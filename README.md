@@ -12,3 +12,4 @@ Name|Age|Height
 ----|---|------
 Allen|17|178
 Ted|23|169
+Kate|22|168
