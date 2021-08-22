@@ -1,0 +1,43 @@
+docs = """上蓋顏色：黑色 
+處理器：Intel Core i7-10510U Processor ( 1.80GHz 8MB ) 
+記憶體：16.0GB DDR4 SDRAM 2666 DDR4 SDRAM Onboard 2666MHz 
+光碟機：NA 
+硬碟機：512GB_SSD_M.2_2280_NVME_TLC_OP 
+顯示晶片：Intel UHD 顯示卡 
+螢幕：13.3"FHD, IPS, AntiGlare, LED Backlight, Non-Touch 1920x1080 
+音訊：Dolby Audio Premium®/降噪雙陣列遠場麥克風 
+網路攝影機：720p 
+有線網路：無 
+無線網路：Intel Wi-Fi 6 AX201 2x2a 
+藍芽：5.1 版 
+讀卡機：Y 
+連接埠： 
+2 x USB 3.1 Gen 1 
+2 x USB-C 
+HDMI：1 x HDMI 
+鍵盤：採用白色 LED 照明的背光功能 
+尺寸：311.5 公釐 x 219 公釐 x 17.6 公釐 
+重量：1.38kg 
+作業系統：Windows 10 PRO 
+電池：4 Cell 鋰聚合物電池 45Wh 
+指紋辨識：Y 
+快充：Y 
+國際條碼 (EAN)：195477313408 
+保固：1年台灣保固"""
+
+# 將文章內的數字全部替代成 '$'
+
+# 找出文章內最長的數字串,包含整數跟小數
+=========================================================
+import re
+print(re.sub("\d","$",docs))
+longest_int = re.findall("[\d.*]+",docs)
+
+a = 0
+for i in range(len(longest_int)-1):
+    if len(longest_int[i]) > len(longest_int[i+1]):
+        a = i
+    else:
+        i = i
+    continue
+print("文章內最長的數字串為：",longest_int[a])
