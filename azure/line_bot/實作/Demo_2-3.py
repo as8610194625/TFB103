@@ -40,40 +40,40 @@ def callback():
 
 # handle msg
 import os
-# import speech_recognition as sr
+import speech_recognition as sr
 
-# def transcribe(wav_path):
-#     '''
-#     Speech to Text by Google free API
-#     language: en-US, zh-TW
-#     '''
+def transcribe(wav_path):
+    '''
+    Speech to Text by Google free API
+    language: en-US, zh-TW
+    '''
     
-#     r = sr.Recognizer()
-#     with sr.AudioFile(wav_path) as source:
-#         audio = r.record(source)
-#     try:
-#         return r.recognize_google(audio, language="zh-TW")
-#     except sr.UnknownValueError:
-#         print("Google Speech Recognition could not understand audio")
-#     except sr.RequestError as e:
-#         print("Could not request results from Google Speech Recognition service; {0}".format(e))
-#     return None
+    r = sr.Recognizer()
+    with sr.AudioFile(wav_path) as source:
+        audio = r.record(source)
+    try:
+        return r.recognize_google(audio, language="zh-TW")
+    except sr.UnknownValueError:
+        print("Google Speech Recognition could not understand audio")
+    except sr.RequestError as e:
+        print("Could not request results from Google Speech Recognition service; {0}".format(e))
+    return None
     
-# @handler.add(MessageEvent, message=AudioMessage)
-# def handle_audio(event):
+@handler.add(MessageEvent, message=AudioMessage)
+def handle_audio(event):
 
-#     name_mp3 = 'recording.mp3'
-#     name_wav = 'recording.wav'
-#     message_content = line_bot_api.get_message_content(event.message.id)
+    name_mp3 = 'recording.mp3'
+    name_wav = 'recording.wav'
+    message_content = line_bot_api.get_message_content(event.message.id)
     
-#     with open(name_mp3, 'wb') as fd:
-#         for chunk in message_content.iter_content():
-#             fd.write(chunk)
+    with open(name_mp3, 'wb') as fd:
+        for chunk in message_content.iter_content():
+            fd.write(chunk)
     
-#     os.system('ffmpeg -y -i ' + name_mp3 + ' ' + name_wav + ' -loglevel quiet')
-#     text = transcribe(name_wav)
-#     print('Transcribe:', text)
-#     line_bot_api.reply_message(event.reply_token, TextSendMessage(text = text))
+    os.system('ffmpeg -y -i ' + name_mp3 + ' ' + name_wav + ' -loglevel quiet')
+    text = transcribe(name_wav)
+    print('Transcribe:', text)
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text = text))
 @handler.add(MessageEvent, message=ImageMessage)
 def handle(event):
     message_content = line_bot_api.get_message_content(event.message.id)
