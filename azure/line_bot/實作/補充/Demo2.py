@@ -4,13 +4,13 @@ app = Flask(__name__)
 from flask import request, abort
 from linebot import  LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, TextMessage, PostbackEvent, TextSendMessage, ImagemapSendMessage, BaseSize, MessageImagemapAction, URIImagemapAction, ImagemapArea, TemplateSendMessage, ButtonsTemplate, DatetimePickerTemplateAction
+from linebot.models import MessageEvent, TextMessage, PostbackEvent, TextSendMessage, ImagemapSendMessage, BaseSize, MessageImagemapAction, URIImagemapAction, ImagemapArea, TemplateSendMessage, ButtonsTemplate, DatetimePickerTemplateAction, imagemap
 from urllib.parse import parse_qsl
 import datetime
 
-line_bot_api = LineBotApi('TUMeTx6e89YskIYfgtXw7azK/Qp7ghZ7zpG1ftadTfho9Ell85cnos4YHE/j2VYpkW8EcCtoo9Mo85iWp60zeaDWUqXFGulF/MHWb23P92wkQf0IZ3PZY/sz3rCxT/q3JSL1Ia6jcJxgW00XR08uNAdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi('IPlA3rOBc1lT+ubgYl/zyRmA3lFdSZKLJWLSZya6hBy4qFPtqMV6k+bWbZxv9LfakW8EcCtoo9Mo85iWp60zeaDWUqXFGulF/MHWb23P92yAI2WZbKUCnibssNMznxhK/IaoSYG0rrxLzZp6yIMu6AdB04t89/1O/w1cDnyilFU=')
 # your linebot message API - Channel secret
-handler = WebhookHandler('2ab32fa9ab3cf313231d5348e012933f')
+handler = WebhookHandler('cc218d13a298f6a8fde93c2ecda97203')
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -65,6 +65,24 @@ def sendImgmap(event):  #圖片地圖
                         height=imgheight  
                     )
                 ),
+                MessageImagemapAction(  #顯示文字訊息
+                    text='你點選了B區塊！',
+                    area=ImagemapArea(  #設定圖片範圍:左方1/4區域
+                        x=imgwidth*0.5, 
+                        y=0, 
+                        width=imgwidth*0.25, 
+                        height=imgheight  
+                    )
+                ),
+                MessageImagemapAction(  #顯示文字訊息
+                    text='你點選了A區塊！',
+                    area=ImagemapArea(  #設定圖片範圍:左方1/4區域
+                        x=imgwidth*0.25, 
+                        y=0, 
+                        width=imgwidth*0.25, 
+                        height=imgheight  
+                    )
+                )
             ]
         )
         line_bot_api.reply_message(event.reply_token, message)
@@ -128,4 +146,4 @@ def sendData_sell(event, backdata):  #Postback,顯示日期時間
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))
 
 if __name__ == '__main__':
-    app.run(port=12345)
+    app.run(port=12345,debug=True)
