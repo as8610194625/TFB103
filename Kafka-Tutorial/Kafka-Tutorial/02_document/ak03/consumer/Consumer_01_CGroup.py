@@ -51,7 +51,7 @@ if __name__ == '__main__':
     # See https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md
     props = {
         'bootstrap.servers': 'localhost:9092',         # Kafka 集群在那裡? (置換成要連接的 Kafka 集群)
-        'group.id': 'iii',                             # ConsumerGroup 的名稱 (置換成你/妳的學員 ID)
+        'group.id': 'TFB103-13',                             # ConsumerGroup 的名稱 (置換成你/妳的學員 ID)
         'auto.offset.reset': 'earliest',               # Offset 從最前面開始
         'error_cb': error_cb                           # 設定接收 error 訊息的 callback 函數
     }

@@ -1,0 +1,6 @@
+Collecting gym
+  Using cached gym-0.21.0-py3-none-any.whl
+Requirement already satisfied: cloudpickle>=1.2.0 in /opt/conda/lib/python3.9/site-packages (from gym) (2.0.0)
+Requirement already satisfied: numpy>=1.18.0 in /opt/conda/lib/python3.9/site-packages (from gym) (1.19.5)
+Installing collected packages: gym
+Successfully installed gym-0.21.0
