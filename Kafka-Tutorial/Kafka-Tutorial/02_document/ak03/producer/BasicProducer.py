@@ -37,7 +37,7 @@ if __name__ == '__main__':
     producer = Producer(props)
 
     # 步驟3. 指定想要發佈訊息的 topic 名稱
-    topicName = 'ak03.test'
+    topicName = 'ak03.four_partition'
     msgCount = 1000
     try:
         print('Start sending messages ...')
